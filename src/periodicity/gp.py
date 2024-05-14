@@ -3,8 +3,9 @@ import celerite2.theano
 import emcee
 import george
 import numpy as np
-import pymc3 as pm
-import pymc3_ext as pmx
+# import pymc3 as pm
+import pymc as pm
+# import pymc3_ext as pmx
 from scipy.optimize import minimize
 from scipy.stats import norm
 
@@ -559,7 +560,8 @@ class TheanoModeler(object):
 
     def mcmc(self, n_walkers=1, n_steps=2000, burn=1000, cores=1):
         with self.model:
-            trace = pmx.sample(
+            # trace = pmx.sample(
+            trace = pm.sample(
                 tune=burn,
                 draws=n_steps - burn,
                 cores=cores,
